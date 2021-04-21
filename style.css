@@ -1,0 +1,48 @@
+:root {
+    --radius: 5px;
+}
+
+.centered {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.calculator {
+    border: 1px solid black;
+    border-radius: var(--radius);
+}
+
+.display {
+    text-align: right;
+    font-size: x-large;
+    border: 1px solid black;
+    border-radius: var(--radius);
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 15px;
+}
+
+.display-controls {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
+}
+
+.keypad {
+    border: 1px solid black;
+    border-radius: var(--radius);
+    padding: 10px;
+    margin: 15px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 10px;
+}
+
+.buttons button {
+    margin-top: 10px;
+}
