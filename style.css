@@ -1,5 +1,7 @@
 :root {
     --radius: 5px;
+    --padding: 20px;
+    --margin: 25px;
 }
 
 .centered {
@@ -10,18 +12,30 @@
 }
 
 .calculator {
+    width: 480px;
+    height: auto;
     border: 1px solid black;
     border-radius: var(--radius);
 }
 
 .display {
+    width: auto;
+    min-height: 70px;
+    word-wrap: break-word;
     text-align: right;
-    font-size: x-large;
+    font-size: xx-large;
     border: 1px solid black;
     border-radius: var(--radius);
-    padding-left: 10px;
-    padding-right: 10px;
-    margin: 15px;
+    padding: var(--padding);
+    margin: var(--margin);
+}
+
+
+.keypad {
+    border: 1px solid black;
+    border-radius: var(--radius);
+    padding: var(--padding);
+    margin: var(--margin);
 }
 
 .display-controls {
@@ -30,11 +44,9 @@
     column-gap: 10px;
 }
 
-.keypad {
-    border: 1px solid black;
-    border-radius: var(--radius);
-    padding: 10px;
-    margin: 15px;
+.display-controls button {
+    width: 190px;
+    height: 50px;
 }
 
 .buttons {
@@ -45,4 +57,6 @@
 
 .buttons button {
     margin-top: 10px;
+    width: 90px;
+    height: 50px;
 }
