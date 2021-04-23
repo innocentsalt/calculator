@@ -2,6 +2,7 @@
     --radius: 5px;
     --padding: 20px;
     --margin: 25px;
+    --frame-color: rgba(255, 255, 255);
 }
 
 .centered {
@@ -14,8 +15,9 @@
 .calculator {
     width: 480px;
     height: auto;
-    border: 1px solid black;
-    border-radius: var(--radius);
+    border: 1px solid var(--frame-color);
+    border-radius: 15px;
+    background-color: black;
 }
 
 .display {
@@ -24,10 +26,11 @@
     word-wrap: break-word;
     text-align: right;
     font-size: xx-large;
-    border: 1px solid black;
+    border: 1px solid var(--frame-color);
     border-radius: var(--radius);
     padding: var(--padding);
     margin: var(--margin);
+    color: white;
 }
 
 .display .secondary {
@@ -52,6 +55,21 @@
     height: 50px;
 }
 
+.display-controls button, .buttons button {
+    border: 1px solid var(--frame-color);
+    color: white;
+    font-weight: 900;
+    border-radius: var(--radius);
+}
+
+.clear {
+    background-color: tomato;
+}
+
+.delete {
+    background-color: dodgerblue;
+}
+
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -62,4 +80,10 @@
     margin-top: 10px;
     width: 90px;
     height: 50px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.buttons button:hover, .display-controls button:hover {
+    scale: 1.05;
+    transition: 0.5;
 }
