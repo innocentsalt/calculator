@@ -12,6 +12,10 @@ const divide = (a, b) => {
 
 const operate = (operator, a, b) => operator(a, b);
 
+const mulOrDiv = expr => {
+    return expr.indexOf('*') !== -1 || expr.indexOf('/') !== -1;
+};
+
 /** calculator STATUS BEGIN */
 const supportedOperators = {
     '+': add,
@@ -24,6 +28,7 @@ let selectedOperator = '';
 let accumulator = '';
 let lastOperand = '';
 let lastOperator = '';
+let operatorInSecondary = false;
 /** calculator STATUS END */
 
 const displayPrimary = document.querySelector('.primary');
@@ -43,7 +48,6 @@ clearButton.addEventListener('click', (e) => {
 const deleteButton = document.querySelector('.delete');
 deleteButton.addEventListener('click', () => {
     displayPrimary.textContent = displayPrimary.textContent.slice(0, -1);
-    if (!displayPrimary.textContent) displayPrimary.textContent = '';
 });
 
 const digits = document.querySelectorAll('.digit');
@@ -64,10 +68,12 @@ const operators = document.querySelectorAll('.operator');
 operators.forEach((operator) => {
     operator.addEventListener('click', (e) => {
 
-        if (e.target.textContent === '-' && displayPrimary.textContent === '') {
+        if (e.target.textContent === '-' && displayPrimary.textContent === '' && lastOperator && mulOrDiv(displaySecondary.textContent)) {
             displayPrimary.textContent = '-';
             return;
         }
+
+        operatorInSecondary = true;
 
         if (periodUsed) periodUsed = false;
 
@@ -78,18 +84,29 @@ operators.forEach((operator) => {
         selectedOperator = supportedOperators[e.target.textContent];
 
         if (accumulator && lastOperand) {
+            if (lastOperand === '-') {
+                lastOperator = selectedOperator;
+                return;
+            };
             let result = (operate(lastOperator, parseFloat(accumulator), parseFloat(lastOperand))).toString();
             if (!result) return;
             accumulator = result;
             lastOperator = selectedOperator;
         }
         displayPrimary.textContent = '';
-        displaySecondary.textContent = accumulator;
+        displaySecondary.textContent = accumulator + ' ' + e.target.textContent;
     });
 });
 
 const equal = document.querySelector('.equal');
 equal.addEventListener('click', (e) => {
+    if (!accumulator) {
+        accumulator = displayPrimary.textContent;
+        displayPrimary.textContent = '';
+        displaySecondary.textContent = accumulator;
+        return;
+    }
+
     lastOperand = displayPrimary.textContent;
     if (accumulator && lastOperand) {
         let result = (operate(selectedOperator, parseFloat(accumulator), parseFloat(lastOperand))).toString();
