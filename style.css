@@ -30,6 +30,9 @@
     margin: var(--margin);
 }
 
+.display .secondary {
+    font-size: 14px;
+}
 
 .keypad {
     border: 1px solid black;
